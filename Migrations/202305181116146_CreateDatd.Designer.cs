@@ -7,13 +7,13 @@ namespace vidli.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class PopulateBirthdateToCustomer : IMigrationMetadata
+    public sealed partial class CreateDatd : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(PopulateBirthdateToCustomer));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(CreateDatd));
         
         string IMigrationMetadata.Id
         {
-            get { return "202305180710430_PopulateBirthdateToCustomer"; }
+            get { return "202305181116146_CreateDatd"; }
         }
         
         string IMigrationMetadata.Source
