@@ -10,7 +10,7 @@ namespace vidli.Models
     {
         public ApplicationDbContext()
         {
-
+         
         }
         //Entities
         public DbSet<Customer> Customers { get; set; }

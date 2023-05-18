@@ -15,5 +15,6 @@ namespace vidli.Models
         public bool IsSubscribedToNewsLetter { get; set; }
         public MembershipType MembershipType { get; set; }
         public byte MemberShipTypeId { get; set; } //Ef will treat this as foreign key as it recognizes this convention (MembershipType which ref to MemberShipType.cs)
+        public DateTime? Birthdate { get; set; }
     }
 }
