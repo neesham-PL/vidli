@@ -25,7 +25,7 @@ namespace vidli.Controllers
                 MembershipTypes = membershipTypes
             };
 
-            return View("CustomerForm", viewModel);
+            return View("FormCustomer", viewModel);
         }
 
         [HttpPost]

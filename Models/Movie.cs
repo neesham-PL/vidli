@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.ComponentModel.DataAnnotations;
 
 namespace vidli.Models
 {
@@ -13,9 +11,16 @@ namespace vidli.Models
         public byte GenreId { get; set; }
         public DateTime ReleaseDate { get; set; }
         public DateTime DateAdded { get; set; }
+
+
+        [Display(Name = "Number in Stock")]
+        [Range(1, 20)]
         public int NumberStock { get; set; }
 
-
+        //protected void OnModelCreating(DbModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Properties<DateTime>().Configure(c => c.HasColumnType("datetime2"));
+        //}
 
     }
 }
