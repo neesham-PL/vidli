@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Routing;
 
 namespace vidli
@@ -11,17 +7,9 @@ namespace vidli
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
-          
 
-            routes.MapMvcAttributeRoutes();
-            routes.MapRoute(
-                "MoviesByReleaseDate",
-                 "movies/released/{year}/{month}",
-                 new { Controller = "Movies", action = "ByReleaseDate" },
-                 new {year = @"\d{4}", month = @"\d{2}"}
+            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-                     );
-            
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

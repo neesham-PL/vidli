@@ -19,6 +19,7 @@ namespace vidli.Controllers
             _context.Dispose();
         }
 
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult New()
         {
             var genre = _context.Genres.ToList();
@@ -34,6 +35,15 @@ namespace vidli.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Save(Movie movie)
         {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new MovieFormViewModel(movie)
+                {
+                    Genres = _context.Genres.ToList()
+                };
+
+                return View("FormMovie", viewModel);
+            }
             if (movie.Id == 0)
             {
                 movie.DateAdded = DateTime.Now;
@@ -56,8 +66,11 @@ namespace vidli.Controllers
 
         public ViewResult Index()
         {
-            var movies = _context.Movies.Include(c => c.Genre).ToList();
-            return View(movies);
+
+            if (User.IsInRole(RoleName.CanManageMovies))
+                return View("List");
+
+            return View("ReadOnlyList");
         }
         public ActionResult Details(int id)
         {

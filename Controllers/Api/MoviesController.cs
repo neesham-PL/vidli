@@ -1,12 +1,13 @@
 ﻿using AutoMapper;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Http;
+using vidli.Dto;
 using vidli.Models;
-using Vidly.Dtos;
 
-namespace Vidly.Controllers.Api
+namespace vidli.Controllers.Api
 {
     public class MoviesController : ApiController
     {
@@ -19,7 +20,10 @@ namespace Vidly.Controllers.Api
 
         public IEnumerable<MovieDTO> GetMovies()
         {
-            return _context.Movies.ToList().Select(Mapper.Map<Movie, MovieDTO>);
+            return _context.Movies
+                .Include(m => m.Genre)
+                .ToList()
+                .Select(movie => Mapper.Map<Movie, MovieDTO>(movie)).ToList();
         }
 
         public IHttpActionResult GetMovie(int id)

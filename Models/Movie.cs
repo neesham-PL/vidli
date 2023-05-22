@@ -16,6 +16,7 @@ namespace vidli.Models
         [Display(Name = "Number in Stock")]
         [Range(1, 20)]
         public int NumberStock { get; set; }
+        public byte NumberAvailable { get; set; }
 
         //protected void OnModelCreating(DbModelBuilder modelBuilder)
         //{

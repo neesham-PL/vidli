@@ -1,8 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using vidli.Models;
 
-namespace Vidly.Models
+namespace vidli.Models
 {
     public class Min18YearsIfAMember : ValidationAttribute
     {
@@ -10,7 +9,8 @@ namespace Vidly.Models
         {
             var customer = (Customer)validationContext.ObjectInstance;
 
-            if (customer.MemberShipTypeId == MembershipType.Unknown || customer.MemberShipTypeId == MembershipType.PayAsYouGo)
+            if (customer.MemberShipTypeId == MembershipType.Unknown ||
+                customer.MemberShipTypeId == MembershipType.PayAsYouGo)
                 return ValidationResult.Success;
 
             if (customer.Birthdate == null)

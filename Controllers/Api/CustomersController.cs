@@ -1,11 +1,12 @@
 ﻿using AutoMapper;
 using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Http;
+using vidli.Dto;
 using vidli.Models;
-using Vidly.Dtos;
 
-namespace Vidly.Controllers.Api
+namespace vidli.Controllers.Api
 {
 
     public class CustomersController : ApiController
@@ -20,7 +21,15 @@ namespace Vidly.Controllers.Api
         // GET /api/customers
         public IHttpActionResult GetCustomers(string query = null)
         {
-            var customerDtos = _context.Customers.ToList().Select(Mapper.Map<Customer, CustomerDTO>);
+            var customersQuery = _context.Customers
+                .Include(c => c.MembershipType);
+
+            if (!String.IsNullOrWhiteSpace(query))
+                customersQuery = customersQuery.Where(c => c.Name.Contains(query));
+
+            var customerDtos = customersQuery
+                .ToList()
+                .Select(Mapper.Map<Customer, CustomerDTO>);
 
             return Ok(customerDtos);
         }

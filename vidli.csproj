@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -49,14 +50,47 @@
       <HintPath>packages\AutoMapper.4.1.0\lib\net45\AutoMapper.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServerCompact, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.SqlServerCompact.6.4.4\lib\net45\EntityFramework.SqlServerCompact.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.Identity.Core.2.2.3\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.Identity.EntityFramework.2.2.3\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.Identity.Owin.2.2.3\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=4.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Owin.4.2.2\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=4.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Owin.Host.SystemWeb.4.2.2\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.SqlServer.Compact.4.0.8876.1\lib\net40\System.Data.SqlServerCe.dll</HintPath>
+    </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.AspNet.WebApi.Client.5.2.9\lib\net45\System.Net.Http.Formatting.dll</HintPath>
@@ -135,84 +169,64 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\MappingProfile.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\Api\NewRentalsController.cs" />
     <Compile Include="Controllers\Api\MoviesController.cs" />
     <Compile Include="Controllers\Api\CustomersController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
     <Compile Include="Dto\CustomerDTO.cs" />
     <Compile Include="Dto\GenreDTO.cs" />
     <Compile Include="Dto\MembershipTypeDTO.cs" />
+    <Compile Include="Dto\NewRentalDTO.cs" />
     <Compile Include="Dto\MovieDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202305171338324_InitialModel.cs" />
-    <Compile Include="Migrations\202305171338324_InitialModel.Designer.cs">
-      <DependentUpon>202305171338324_InitialModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202305180451156_AddIsSubscribedToCustomer.cs" />
-    <Compile Include="Migrations\202305180451156_AddIsSubscribedToCustomer.Designer.cs">
-      <DependentUpon>202305180451156_AddIsSubscribedToCustomer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202305180457020_AddMemberShipType.cs" />
-    <Compile Include="Migrations\202305180457020_AddMemberShipType.Designer.cs">
-      <DependentUpon>202305180457020_AddMemberShipType.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202305180506392_PopulateMembershipType.cs" />
-    <Compile Include="Migrations\202305180506392_PopulateMembershipType.Designer.cs">
-      <DependentUpon>202305180506392_PopulateMembershipType.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202305180515595_ApplyAnnotationsToCustomerName.cs" />
-    <Compile Include="Migrations\202305180515595_ApplyAnnotationsToCustomerName.Designer.cs">
-      <DependentUpon>202305180515595_ApplyAnnotationsToCustomerName.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\.cs" />
-    <Compile Include="Migrations\202305180636581_PopulateName.cs" />
-    <Compile Include="Migrations\202305180636581_PopulateName.Designer.cs">
-      <DependentUpon>202305180636581_PopulateName.cs</DependentUpon>
+    <Compile Include="Migrations\202305220939584_user.cs" />
+    <Compile Include="Migrations\202305220939584_user.designer.cs">
+      <DependentUpon>202305220939584_user.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202305180637359_AddNameMembershipType.cs" />
-    <Compile Include="Migrations\202305180637359_AddNameMembershipType.Designer.cs">
-      <DependentUpon>202305180637359_AddNameMembershipType.cs</DependentUpon>
+    <Compile Include="Migrations\202305220944572_populateMemberShip.cs" />
+    <Compile Include="Migrations\202305220944572_populateMemberShip.designer.cs">
+      <DependentUpon>202305220944572_populateMemberShip.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202305180637587_AddNameInMembershipType.cs" />
-    <Compile Include="Migrations\202305180637587_AddNameInMembershipType.Designer.cs">
-      <DependentUpon>202305180637587_AddNameInMembershipType.cs</DependentUpon>
+    <Compile Include="Migrations\202305220950098_populateGenre.cs" />
+    <Compile Include="Migrations\202305220950098_populateGenre.designer.cs">
+      <DependentUpon>202305220950098_populateGenre.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202305180708507_AddBirthdateToCustomer.cs" />
-    <Compile Include="Migrations\202305180708507_AddBirthdateToCustomer.Designer.cs">
-      <DependentUpon>202305180708507_AddBirthdateToCustomer.cs</DependentUpon>
+    <Compile Include="Migrations\202305220951130_populateMovie.cs" />
+    <Compile Include="Migrations\202305220951130_populateMovie.designer.cs">
+      <DependentUpon>202305220951130_populateMovie.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202305181116146_CreateDatd.cs" />
-    <Compile Include="Migrations\202305181116146_CreateDatd.Designer.cs">
-      <DependentUpon>202305181116146_CreateDatd.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202305181124500_UpdateM.cs" />
-    <Compile Include="Migrations\202305181124500_UpdateM.Designer.cs">
-      <DependentUpon>202305181124500_UpdateM.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202305181131319_PopulateGenre.cs" />
-    <Compile Include="Migrations\202305181131319_PopulateGenre.Designer.cs">
-      <DependentUpon>202305181131319_PopulateGenre.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202305181136128_PopulateMovies.cs" />
-    <Compile Include="Migrations\202305181136128_PopulateMovies.Designer.cs">
-      <DependentUpon>202305181136128_PopulateMovies.cs</DependentUpon>
+    <Compile Include="Migrations\202305221241444_RentalModel.cs" />
+    <Compile Include="Migrations\202305221241444_RentalModel.designer.cs">
+      <DependentUpon>202305221241444_RentalModel.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
+    <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Rental.cs" />
     <Compile Include="Models\Genre.cs" />
+    <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MembershipType.cs" />
     <Compile Include="Models\Min18YearsIfAMember.cs" />
     <Compile Include="Models\Movie.cs" />
+    <Compile Include="Models\RoleName.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
     <Compile Include="ViewModel\MovieFormViewModel.cs" />
     <Compile Include="ViewModel\CustomerFormViewModel.cs" />
   </ItemGroup>
@@ -221,13 +235,223 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\autoFill.bootstrap.css" />
+    <Content Include="Content\DataTables\css\autoFill.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\autoFill.dataTables.css" />
+    <Content Include="Content\DataTables\css\autoFill.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\autoFill.foundation.css" />
+    <Content Include="Content\DataTables\css\autoFill.foundation.min.css" />
+    <Content Include="Content\DataTables\css\autoFill.jqueryui.css" />
+    <Content Include="Content\DataTables\css\autoFill.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\buttons.bootstrap.css" />
+    <Content Include="Content\DataTables\css\buttons.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\buttons.bootstrap4.css" />
+    <Content Include="Content\DataTables\css\buttons.bootstrap4.min.css" />
+    <Content Include="Content\DataTables\css\buttons.dataTables.css" />
+    <Content Include="Content\DataTables\css\buttons.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\buttons.foundation.css" />
+    <Content Include="Content\DataTables\css\buttons.foundation.min.css" />
+    <Content Include="Content\DataTables\css\buttons.jqueryui.css" />
+    <Content Include="Content\DataTables\css\buttons.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\colReorder.bootstrap.css" />
+    <Content Include="Content\DataTables\css\colReorder.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\colReorder.dataTables.css" />
+    <Content Include="Content\DataTables\css\colReorder.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\colReorder.foundation.css" />
+    <Content Include="Content\DataTables\css\colReorder.foundation.min.css" />
+    <Content Include="Content\DataTables\css\colReorder.jqueryui.css" />
+    <Content Include="Content\DataTables\css\colReorder.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\dataTables.bootstrap.css" />
+    <Content Include="Content\DataTables\css\dataTables.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\dataTables.bootstrap4.css" />
+    <Content Include="Content\DataTables\css\dataTables.bootstrap4.min.css" />
+    <Content Include="Content\DataTables\css\dataTables.foundation.css" />
+    <Content Include="Content\DataTables\css\dataTables.foundation.min.css" />
+    <Content Include="Content\DataTables\css\dataTables.jqueryui.css" />
+    <Content Include="Content\DataTables\css\dataTables.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\dataTables.material.css" />
+    <Content Include="Content\DataTables\css\dataTables.material.min.css" />
+    <Content Include="Content\DataTables\css\dataTables.semanticui.css" />
+    <Content Include="Content\DataTables\css\dataTables.semanticui.min.css" />
+    <Content Include="Content\DataTables\css\dataTables.uikit.css" />
+    <Content Include="Content\DataTables\css\dataTables.uikit.min.css" />
+    <Content Include="Content\DataTables\css\fixedColumns.bootstrap.css" />
+    <Content Include="Content\DataTables\css\fixedColumns.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\fixedColumns.dataTables.css" />
+    <Content Include="Content\DataTables\css\fixedColumns.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\fixedColumns.foundation.css" />
+    <Content Include="Content\DataTables\css\fixedColumns.foundation.min.css" />
+    <Content Include="Content\DataTables\css\fixedColumns.jqueryui.css" />
+    <Content Include="Content\DataTables\css\fixedColumns.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\fixedHeader.bootstrap.css" />
+    <Content Include="Content\DataTables\css\fixedHeader.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\fixedHeader.dataTables.css" />
+    <Content Include="Content\DataTables\css\fixedHeader.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\fixedHeader.foundation.css" />
+    <Content Include="Content\DataTables\css\fixedHeader.foundation.min.css" />
+    <Content Include="Content\DataTables\css\fixedHeader.jqueryui.css" />
+    <Content Include="Content\DataTables\css\fixedHeader.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\jquery.dataTables.css" />
+    <Content Include="Content\DataTables\css\jquery.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\jquery.dataTables_themeroller.css" />
+    <Content Include="Content\DataTables\css\keyTable.bootstrap.css" />
+    <Content Include="Content\DataTables\css\keyTable.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\keyTable.dataTables.css" />
+    <Content Include="Content\DataTables\css\keyTable.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\keyTable.foundation.css" />
+    <Content Include="Content\DataTables\css\keyTable.foundation.min.css" />
+    <Content Include="Content\DataTables\css\keyTable.jqueryui.css" />
+    <Content Include="Content\DataTables\css\keyTable.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\responsive.bootstrap.css" />
+    <Content Include="Content\DataTables\css\responsive.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\responsive.dataTables.css" />
+    <Content Include="Content\DataTables\css\responsive.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\responsive.foundation.css" />
+    <Content Include="Content\DataTables\css\responsive.foundation.min.css" />
+    <Content Include="Content\DataTables\css\responsive.jqueryui.css" />
+    <Content Include="Content\DataTables\css\responsive.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\rowReorder.bootstrap.css" />
+    <Content Include="Content\DataTables\css\rowReorder.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\rowReorder.dataTables.css" />
+    <Content Include="Content\DataTables\css\rowReorder.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\rowReorder.foundation.css" />
+    <Content Include="Content\DataTables\css\rowReorder.foundation.min.css" />
+    <Content Include="Content\DataTables\css\rowReorder.jqueryui.css" />
+    <Content Include="Content\DataTables\css\rowReorder.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\scroller.bootstrap.css" />
+    <Content Include="Content\DataTables\css\scroller.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\scroller.dataTables.css" />
+    <Content Include="Content\DataTables\css\scroller.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\scroller.foundation.css" />
+    <Content Include="Content\DataTables\css\scroller.foundation.min.css" />
+    <Content Include="Content\DataTables\css\scroller.jqueryui.css" />
+    <Content Include="Content\DataTables\css\scroller.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\select.bootstrap.css" />
+    <Content Include="Content\DataTables\css\select.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\select.dataTables.css" />
+    <Content Include="Content\DataTables\css\select.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\select.foundation.css" />
+    <Content Include="Content\DataTables\css\select.foundation.min.css" />
+    <Content Include="Content\DataTables\css\select.jqueryui.css" />
+    <Content Include="Content\DataTables\css\select.jqueryui.min.css" />
+    <Content Include="Content\DataTables\images\details_close.png" />
+    <Content Include="Content\DataTables\images\details_open.png" />
+    <Content Include="Content\DataTables\images\sort_asc.png" />
+    <Content Include="Content\DataTables\images\sort_asc_disabled.png" />
+    <Content Include="Content\DataTables\images\sort_both.png" />
+    <Content Include="Content\DataTables\images\sort_desc.png" />
+    <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
+    <Content Include="Content\DataTables\swf\flashExport.swf" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\bootbox.js" />
+    <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\DataTables\css\mixins.scss" />
+    <Content Include="Content\DataTables\css\common.scss" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\VerifyCode.cshtml" />
+    <Content Include="Views\Account\SendCode.cshtml" />
+    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\ManageLogins.cshtml" />
+    <Content Include="Views\Manage\SetPassword.cshtml" />
+    <Content Include="Views\Movies\ReadOnlyList.cshtml" />
+    <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
+    <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
+    <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
+    <None Include="_bin_deployableAssemblies\x86\sqlceer40EN.dll" />
+    <None Include="_bin_deployableAssemblies\x86\sqlcecompact40.dll" />
+    <None Include="_bin_deployableAssemblies\x86\sqlceca40.dll" />
+    <None Include="_bin_deployableAssemblies\x86\Microsoft.VC90.CRT\README_ENU.txt" />
+    <None Include="_bin_deployableAssemblies\x86\Microsoft.VC90.CRT\msvcr90.dll" />
+    <None Include="_bin_deployableAssemblies\amd64\sqlcese40.dll" />
+    <None Include="_bin_deployableAssemblies\amd64\sqlceqp40.dll" />
+    <None Include="_bin_deployableAssemblies\amd64\sqlceme40.dll" />
+    <None Include="_bin_deployableAssemblies\amd64\sqlceer40EN.dll" />
+    <None Include="_bin_deployableAssemblies\amd64\sqlcecompact40.dll" />
+    <None Include="_bin_deployableAssemblies\amd64\sqlceca40.dll" />
+    <None Include="_bin_deployableAssemblies\amd64\Microsoft.VC90.CRT\README_ENU.txt" />
+    <None Include="_bin_deployableAssemblies\amd64\Microsoft.VC90.CRT\msvcr90.dll" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
+    <Content Include="Scripts\DataTables\autoFill.bootstrap.min.js" />
+    <Content Include="Scripts\DataTables\autoFill.foundation.js" />
+    <Content Include="Scripts\DataTables\autoFill.foundation.min.js" />
+    <Content Include="Scripts\DataTables\autoFill.jqueryui.js" />
+    <Content Include="Scripts\DataTables\autoFill.jqueryui.min.js" />
+    <Content Include="Scripts\DataTables\buttons.bootstrap.js" />
+    <Content Include="Scripts\DataTables\buttons.bootstrap.min.js" />
+    <Content Include="Scripts\DataTables\buttons.bootstrap4.js" />
+    <Content Include="Scripts\DataTables\buttons.bootstrap4.min.js" />
+    <Content Include="Scripts\DataTables\buttons.colVis.js" />
+    <Content Include="Scripts\DataTables\buttons.colVis.min.js" />
+    <Content Include="Scripts\DataTables\buttons.flash.js" />
+    <Content Include="Scripts\DataTables\buttons.flash.min.js" />
+    <Content Include="Scripts\DataTables\buttons.foundation.js" />
+    <Content Include="Scripts\DataTables\buttons.foundation.min.js" />
+    <Content Include="Scripts\DataTables\buttons.html5.js" />
+    <Content Include="Scripts\DataTables\buttons.html5.min.js" />
+    <Content Include="Scripts\DataTables\buttons.jqueryui.js" />
+    <Content Include="Scripts\DataTables\buttons.jqueryui.min.js" />
+    <Content Include="Scripts\DataTables\buttons.print.js" />
+    <Content Include="Scripts\DataTables\buttons.print.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.autoFill.js" />
+    <Content Include="Scripts\DataTables\dataTables.autoFill.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.bootstrap.js" />
+    <Content Include="Scripts\DataTables\dataTables.bootstrap.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.bootstrap4.js" />
+    <Content Include="Scripts\DataTables\dataTables.bootstrap4.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.buttons.js" />
+    <Content Include="Scripts\DataTables\dataTables.buttons.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.colReorder.js" />
+    <Content Include="Scripts\DataTables\dataTables.colReorder.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.fixedColumns.js" />
+    <Content Include="Scripts\DataTables\dataTables.fixedColumns.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.fixedHeader.js" />
+    <Content Include="Scripts\DataTables\dataTables.fixedHeader.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.foundation.js" />
+    <Content Include="Scripts\DataTables\dataTables.foundation.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.jqueryui.js" />
+    <Content Include="Scripts\DataTables\dataTables.jqueryui.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.keyTable.js" />
+    <Content Include="Scripts\DataTables\dataTables.keyTable.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.material.js" />
+    <Content Include="Scripts\DataTables\dataTables.material.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.responsive.js" />
+    <Content Include="Scripts\DataTables\dataTables.responsive.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.rowReorder.js" />
+    <Content Include="Scripts\DataTables\dataTables.rowReorder.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.scroller.js" />
+    <Content Include="Scripts\DataTables\dataTables.scroller.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.select.js" />
+    <Content Include="Scripts\DataTables\dataTables.select.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.semanticui.js" />
+    <Content Include="Scripts\DataTables\dataTables.semanticui.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.uikit.js" />
+    <Content Include="Scripts\DataTables\dataTables.uikit.min.js" />
+    <Content Include="Scripts\DataTables\jquery.dataTables.js" />
+    <Content Include="Scripts\DataTables\jquery.dataTables.min.js" />
+    <Content Include="Scripts\DataTables\responsive.bootstrap.js" />
+    <Content Include="Scripts\DataTables\responsive.bootstrap.min.js" />
+    <Content Include="Scripts\DataTables\responsive.foundation.js" />
+    <Content Include="Scripts\DataTables\responsive.foundation.min.js" />
+    <Content Include="Scripts\DataTables\responsive.jqueryui.js" />
+    <Content Include="Scripts\DataTables\responsive.jqueryui.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -254,12 +478,15 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Movies\Random.cshtml" />
     <Content Include="Views\Shared\_NavBar.cshtml" />
-    <Content Include="Views\Movies\Index.cshtml" />
+    <Content Include="Views\Movies\List.cshtml" />
     <Content Include="Views\Customers\Details.cshtml" />
     <Content Include="Views\Customers\Index.cshtml" />
     <Content Include="Views\Movies\Details.cshtml" />
     <Content Include="Views\Customers\FormCustomer.cshtml" />
     <Content Include="Views\Movies\FormMovie.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <None Include="_bin_deployableAssemblies\amd64\Microsoft.VC90.CRT\Microsoft.VC90.CRT.manifest" />
+    <None Include="_bin_deployableAssemblies\x86\Microsoft.VC90.CRT\Microsoft.VC90.CRT.manifest" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -278,44 +505,20 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202305171338324_InitialModel.resx">
-      <DependentUpon>202305171338324_InitialModel.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202305220939584_user.resx">
+      <DependentUpon>202305220939584_user.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202305180451156_AddIsSubscribedToCustomer.resx">
-      <DependentUpon>202305180451156_AddIsSubscribedToCustomer.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202305220944572_populateMemberShip.resx">
+      <DependentUpon>202305220944572_populateMemberShip.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202305180457020_AddMemberShipType.resx">
-      <DependentUpon>202305180457020_AddMemberShipType.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202305220950098_populateGenre.resx">
+      <DependentUpon>202305220950098_populateGenre.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202305180506392_PopulateMembershipType.resx">
-      <DependentUpon>202305180506392_PopulateMembershipType.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202305220951130_populateMovie.resx">
+      <DependentUpon>202305220951130_populateMovie.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202305180515595_ApplyAnnotationsToCustomerName.resx">
-      <DependentUpon>202305180515595_ApplyAnnotationsToCustomerName.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202305180636581_PopulateName.resx">
-      <DependentUpon>202305180636581_PopulateName.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202305180637359_AddNameMembershipType.resx">
-      <DependentUpon>202305180637359_AddNameMembershipType.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202305180637587_AddNameInMembershipType.resx">
-      <DependentUpon>202305180637587_AddNameInMembershipType.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202305180708507_AddBirthdateToCustomer.resx">
-      <DependentUpon>202305180708507_AddBirthdateToCustomer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202305181116146_CreateDatd.resx">
-      <DependentUpon>202305181116146_CreateDatd.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202305181124500_UpdateM.resx">
-      <DependentUpon>202305181124500_UpdateM.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202305181131319_PopulateGenre.resx">
-      <DependentUpon>202305181131319_PopulateGenre.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202305181136128_PopulateMovies.resx">
-      <DependentUpon>202305181136128_PopulateMovies.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202305221241444_RentalModel.resx">
+      <DependentUpon>202305221241444_RentalModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
@@ -336,7 +539,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>61897</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44351/</IISUrl>
+          <IISUrl>https://localhost:44300/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
@@ -351,7 +554,10 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
   </Target>
+  <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
