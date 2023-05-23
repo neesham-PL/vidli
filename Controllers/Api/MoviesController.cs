@@ -18,12 +18,17 @@ namespace vidli.Controllers.Api
             _context = new ApplicationDbContext();
         }
 
-        public IEnumerable<MovieDTO> GetMovies()
+        public IEnumerable<MovieDTO> GetMovies(string query = null)
         {
-            return _context.Movies
-                .Include(m => m.Genre)
-                .ToList()
-                .Select(movie => Mapper.Map<Movie, MovieDTO>(movie)).ToList();
+
+            var moviesQuery = _context.Movies
+                .Include(m => m.Genre);
+            //.Where(m => m.NumberAvailable > 0)/*;*/
+
+            if (!String.IsNullOrWhiteSpace(query))
+                moviesQuery = moviesQuery.Where(m => m.Name.Contains(query));
+            var moviess = moviesQuery.ToList().Select(Mapper.Map<Movie, MovieDTO>);
+            return moviess;
         }
 
         public IHttpActionResult GetMovie(int id)

@@ -19,7 +19,7 @@ namespace vidli.Controllers
             _context.Dispose();
         }
 
-        [Authorize(Roles = RoleName.CanManageMovies)]
+        //[Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult New()
         {
             var genre = _context.Genres.ToList();
@@ -67,8 +67,8 @@ namespace vidli.Controllers
         public ViewResult Index()
         {
 
-            if (User.IsInRole(RoleName.CanManageMovies))
-                return View("List");
+            // if (User.IsInRole(RoleName.CanManageMovies))
+            return View("List");
 
             return View("ReadOnlyList");
         }
