@@ -60,9 +60,11 @@ namespace vidli.Models
 
     public class AddPhoneNumberViewModel
     {
-        [Required]
+
         [Phone]
         [Display(Name = "Phone Number")]
+        [Required(ErrorMessage = "Required")]
+        [RegularExpression(@"^(\d{10})$", ErrorMessage = "Wrong mobile")]
         public string Number { get; set; }
     }
 

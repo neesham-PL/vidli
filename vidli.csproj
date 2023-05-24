@@ -214,6 +214,10 @@
     <Compile Include="Migrations\202305221241444_RentalModel.designer.cs">
       <DependentUpon>202305221241444_RentalModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202305242017374_Phone.cs" />
+    <Compile Include="Migrations\202305242017374_Phone.designer.cs">
+      <DependentUpon>202305242017374_Phone.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -522,6 +526,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202305220939584_user.resx">
       <DependentUpon>202305220939584_user.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202305220944572_populateMemberShip.resx">
       <DependentUpon>202305220944572_populateMemberShip.cs</DependentUpon>
@@ -534,6 +539,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202305221241444_RentalModel.resx">
       <DependentUpon>202305221241444_RentalModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305242017374_Phone.resx">
+      <DependentUpon>202305242017374_Phone.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

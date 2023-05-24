@@ -13,6 +13,7 @@ namespace vidli.Models
         [Display(Name = "Driving License")]
         public string DrivingLicense { get; set; }
 
+
         [Required]
         [StringLength(50)]
         public string Phone { get; set; }
@@ -78,6 +79,7 @@ namespace vidli.Models
 
         [Required]
         [EmailAddress]
+        [RegularExpression(@"^[A-Z0-9+_.-]+@[A-Z0-9.-]+$/", ErrorMessage = "Wrong mobile")]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
@@ -93,6 +95,8 @@ namespace vidli.Models
         public string ConfirmPassword { get; set; }
 
         [Required]
+        [DataType(DataType.PhoneNumber, ErrorMessage = "Provided phone number not valid")]
+        [RegularExpression(@"^(\d{10})$", ErrorMessage = "Wrong mobile")]
         [StringLength(50)]
         public string Phone { get; set; }
     }
