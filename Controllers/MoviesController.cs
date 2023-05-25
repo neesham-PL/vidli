@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using vidli.Models;
 using vidli.ViewModel;
 
+
 namespace vidli.Controllers
 {
     public class MoviesController : Controller
@@ -19,7 +20,7 @@ namespace vidli.Controllers
             _context.Dispose();
         }
 
-        [Authorize(Roles = RoleName.CanManageMovies)]
+        [System.Web.Http.Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult New()
         {
             var genre = _context.Genres.ToList();
@@ -31,8 +32,9 @@ namespace vidli.Controllers
             return View("FormMovie", viewModel);
         }
 
-        [HttpPost]
+        [System.Web.Http.HttpPost]
         [ValidateAntiForgeryToken]
+        [System.Web.Http.Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult Save(Movie movie)
         {
             if (!ModelState.IsValid)
@@ -82,6 +84,7 @@ namespace vidli.Controllers
             return View(movie);
         }
 
+        [System.Web.Http.Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult Edit(int id)
         {
             var movie = _context.Movies.SingleOrDefault(c => c.Id == id);
@@ -94,6 +97,21 @@ namespace vidli.Controllers
                 Genres = _context.Genres.ToList()
             };
             return View("FormMovie", viewModel);
+        }
+
+        [System.Web.Http.HttpDelete]
+        [System.Web.Http.Authorize(Roles = RoleName.CanManageMovies)]
+
+        public ViewResult DeleteMovie(int id)
+        {
+            var movieInDb = _context.Movies.SingleOrDefault(c => c.Id == id);
+
+            if (movieInDb != null)
+            {
+                _context.Movies.Remove(movieInDb);
+                _context.SaveChanges();
+            }
+            return View("List");
         }
     }
 }

@@ -79,7 +79,7 @@ namespace vidli.Models
 
         [Required]
         [EmailAddress]
-        [RegularExpression(@"^[A-Z0-9+_.-]+@[A-Z0-9.-]+$/", ErrorMessage = "Wrong mobile")]
+        // [RegularExpression(@"^[A-Z0-9+_.-]+@[A-Z0-9.-]+$/", ErrorMessage = "Wrong emil")]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
@@ -96,7 +96,8 @@ namespace vidli.Models
 
         [Required]
         [DataType(DataType.PhoneNumber, ErrorMessage = "Provided phone number not valid")]
-        [RegularExpression(@"^(\d{10})$", ErrorMessage = "Wrong mobile")]
+        [RegularExpression(@"^[6-9]\d{9}$", ErrorMessage = "Invalid phone number")]
+        // [RegularExpression(@"/^[789][0-9]{9}$/", ErrorMessage = "Wrong mobile, must start with 7/8/9 and total  10 digits")]
         [StringLength(50)]
         public string Phone { get; set; }
     }
@@ -106,6 +107,7 @@ namespace vidli.Models
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
+        [RegularExpression(@"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$", ErrorMessage = "email address")]
         public string Email { get; set; }
 
         [Required]
