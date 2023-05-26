@@ -99,19 +99,8 @@ namespace vidli.Controllers
             return View("FormMovie", viewModel);
         }
 
-        [System.Web.Http.HttpDelete]
-        [System.Web.Http.Authorize(Roles = RoleName.CanManageMovies)]
 
-        public ViewResult DeleteMovie(int id)
-        {
-            var movieInDb = _context.Movies.SingleOrDefault(c => c.Id == id);
 
-            if (movieInDb != null)
-            {
-                _context.Movies.Remove(movieInDb);
-                _context.SaveChanges();
-            }
-            return View("List");
-        }
     }
+
 }

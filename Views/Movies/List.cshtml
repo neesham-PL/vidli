@@ -42,20 +42,19 @@
                     {
                         data: "id",
                         render: function(data) {
-                            return "<button class='btn-link js-delete' data-movie-id=" +data+ ">Delete</button>";
+                            return "<button class='btn-link js-delete' data-movie-id=" +data + ">Delete</button>";
                         }
                     }
                 ]
             });
 
-            $("#movies").click(function (e) {
+            $("#movies").on("click", ".js-delete", function () {
             
                 var button = $(this);
-                debugger;
-                var result = confirm("Are you sure you want to delete this movie?");
-                if (result) {
+                if(confirm("Are you sure you want to delete this movie?"))
+                {
                     $.ajax({
-                        url: "/movies/deleteMovie/" + button.attr("data-movie-id"),
+                        url: "api/movies/" + button.attr("data-movie-id"),
                         method: "DELETE",
                         success: function () {
                             table.row(button.parents("tr")).remove().draw();

@@ -1,5 +1,6 @@
 using Microsoft.Owin;
 using Owin;
+//using Swashbuckle.Swagger;
 
 [assembly: OwinStartupAttribute(typeof(vidli.Startup))]
 namespace vidli
@@ -9,6 +10,8 @@ namespace vidli
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
+
+
         }
     }
 }
